@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+    
+    tools {
+        maven 'Maven-3.9.7'
+    }
+    
+    stages {
+        stage('Build stage') {
+            steps {
+                echo 'building your maven project'
+            }
+        }
+
+        stage('Git-clone') {
+            steps {
+                echo 'cloning your maven project from the provided git repo'
+                git branch: 'main', url: 'https://github.com/akshayyyyyyyy123/Reg-form.git'
+            }
+        }
+
+        stage('Maven build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+    }
+}
